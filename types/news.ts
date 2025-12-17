@@ -4,5 +4,5 @@ export interface News {
   photo: string;
   category: string;
   content: string;
-  id: number;
+  id: string;
 }
