@@ -14,7 +14,7 @@ export function NewsCard({ news }: NewsCardProps) {
   const excerpt = news.content.slice(0, 120) + '...';
 
   return (
-    <article className="news-card-container">
+    <article className="news-card-container" data-testid="news-card">
       <Image
         src={news.photo}
         width={500}
@@ -28,7 +28,10 @@ export function NewsCard({ news }: NewsCardProps) {
       <p>{news.category}</p>
 
       {token && (
-        <button onClick={() => toggleFavorites(Number(news.id))}>
+        <button
+          onClick={() => toggleFavorites(Number(news.id))}
+          aria-label="Favoritar"
+        >
           {isFavorited ? 'Remover dos favorito' : 'Favoritar'}
         </button>
       )}
