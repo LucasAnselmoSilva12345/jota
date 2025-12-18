@@ -1,3 +1,4 @@
+import { Header } from '@/components/Header';
 import { NewsList } from '@/components/NewsList';
 import { getNews } from '@/service/news.service';
 import { News } from '@/types/news';
@@ -19,6 +20,8 @@ export default function Home({ news, hasError }: HomeProps) {
           content="Portal de notícias do teste técnico"
         />
       </Head>
+
+      <Header />
 
       <main style={{ padding: 20 }}>
         <h1>Portal de Notícias — Desafio Técnico</h1>
