@@ -1,14 +1,15 @@
 import { NewsList } from '@/components/NewsList';
 import { getNews } from '@/service/news.service';
 import { News } from '@/types/news';
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
 
 interface HomeProps {
   news: News[];
+  hasError: boolean;
 }
 
-export default function Home({ news }: HomeProps) {
+export default function Home({ news, hasError }: HomeProps) {
   return (
     <>
       <Head>
@@ -22,6 +23,8 @@ export default function Home({ news }: HomeProps) {
       <main style={{ padding: 20 }}>
         <h1>Portal de Notícias — Desafio Técnico</h1>
 
+        {hasError && <p>Erro ao carregar as notícias</p>}
+
         <p>Esta é a página inicial.</p>
 
         <hr style={{ margin: '2rem 0' }} />
@@ -34,20 +37,24 @@ export default function Home({ news }: HomeProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   try {
     const news = await getNews();
 
     return {
       props: {
         news,
+        hasError: false,
       },
+      revalidate: 60,
     };
   } catch (error) {
     return {
       props: {
         news: [],
+        hasError: true,
       },
+      revalidate: 60,
     };
   }
 };

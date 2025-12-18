@@ -10,27 +10,24 @@ interface NewsPageProps {
 
 export default function NewsPage({ news }: NewsPageProps) {
   if (!news) {
-    <h1>Noticia não encontrada no site</h1>;
+    return <h1>Notícia não encontrada</h1>;
   }
 
   return (
     <>
       <Head>
-        <title>{news?.title} | JOTA News</title>
-        <meta name="description" content={news?.content.slice(0, 150)} />
+        <title>{news.title} | JOTA News</title>
+        <meta name="description" content={news.content.slice(0, 150)} />
       </Head>
 
       <main style={{ padding: 20 }}>
-        <h1>Portal de Notícias — Desafio Técnico</h1>
+        <article>
+          <Image src={news.photo} alt={news.title} width={800} height={450} />
 
-        <p>Esta é a página inicial.</p>
-
-        <hr style={{ margin: '2rem 0' }} />
-
-        <Image src={news?.photo} width={500} height={500} alt={news?.title} />
-        <h3>{news?.title}</h3>
-        <p>{news?.content}</p>
-        <p>{news?.category}</p>
+          <h1>{news.title}</h1>
+          <p>{news.category}</p>
+          <p>{news.content}</p>
+        </article>
       </main>
     </>
   );
@@ -40,19 +37,10 @@ export const getServerSideProps: GetServerSideProps<NewsPageProps> = async ({
   params,
 }) => {
   try {
-    const id = params?.id as string;
-    const news = await getNewsById(id);
+    const news = await getNewsById(params!.id as string);
 
-    return {
-      props: {
-        news,
-      },
-    };
-  } catch (error) {
-    return {
-      props: {
-        news: [],
-      },
-    };
+    return { props: { news } };
+  } catch {
+    return { props: { news: null } };
   }
 };
