@@ -23,7 +23,7 @@ export function NewsCard({ news }: NewsCardProps) {
       <p>{excerpt}</p>
       <p>{news.category}</p>
 
-      <Link href={`/noticia/${news.id}`}>Ver Noticia</Link>
+      <Link href={`/noticia/${news.id}`}>Ver notícia</Link>
     </article>
   );
 }
