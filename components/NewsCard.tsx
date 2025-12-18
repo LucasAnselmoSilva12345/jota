@@ -1,3 +1,4 @@
+import { useAuthStore } from '@/store/auth.store';
 import { News } from '@/types/news';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,6 +8,9 @@ interface NewsCardProps {
 }
 
 export function NewsCard({ news }: NewsCardProps) {
+  const { favorites, toggleFavorites, token } = useAuthStore();
+  const isFavorited = favorites.includes(Number(news.id));
+
   const excerpt = news.content.slice(0, 120) + '...';
 
   return (
@@ -22,6 +26,12 @@ export function NewsCard({ news }: NewsCardProps) {
       <h3 className="">{news.title}</h3>
       <p>{excerpt}</p>
       <p>{news.category}</p>
+
+      {token && (
+        <button onClick={() => toggleFavorites(Number(news.id))}>
+          {isFavorited ? 'Remover dos favorito' : 'Favoritar'}
+        </button>
+      )}
 
       <Link href={`/noticia/${news.id}`}>Ver notícia</Link>
     </article>
