@@ -12,7 +12,7 @@ interface HomeProps {
 
 export default function Home({ news, hasError }: HomeProps) {
   return (
-    <>
+    <div className="w-full p-4 lg:max-w-325 lg:mx-auto lg:my-0">
       <Head>
         <title>JOTA News</title>
         <meta
@@ -23,20 +23,15 @@ export default function Home({ news, hasError }: HomeProps) {
 
       <Header />
 
-      <main style={{ padding: 20 }}>
-        <h1>Portal de Notícias — Desafio Técnico</h1>
-
+      <main>
         {hasError && <p>Erro ao carregar as notícias</p>}
 
-        <p>Esta é a página inicial.</p>
-
-        <hr style={{ margin: '2rem 0' }} />
-
+        <h1 className="sr-only">Portal de Notícias — Desafio Técnico</h1>
         <section className="container-news-list">
           <NewsList news={news} />
         </section>
       </main>
-    </>
+    </div>
   );
 }
 

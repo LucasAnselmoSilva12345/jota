@@ -23,7 +23,7 @@ export function NewsCard({ news }: NewsCardProps) {
         sizes="(max-width: 768px) 100vw, 500px"
         priority={false}
       />
-      <h3 className="">{news.title}</h3>
+      <h2 className="">{news.title}</h2>
       <p>{excerpt}</p>
       <p>{news.category}</p>
 
