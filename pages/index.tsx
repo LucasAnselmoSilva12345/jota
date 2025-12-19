@@ -20,16 +20,11 @@ export default function Home({ news, hasError }: HomeProps) {
           content="Portal de notícias do teste técnico"
         />
       </Head>
-
       <Header />
-
       <main>
         {hasError && <p>Erro ao carregar as notícias</p>}
-
         <h1 className="sr-only">Portal de Notícias — Desafio Técnico</h1>
-        <section className="container-news-list">
-          <NewsList news={news} />
-        </section>
+        <NewsList news={news} />
       </main>
     </div>
   );
