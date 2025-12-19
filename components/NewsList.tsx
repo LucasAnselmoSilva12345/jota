@@ -10,7 +10,7 @@ export function NewsList({ news }: NewsListProps) {
   const rest = news.slice(4);
 
   return (
-    <section className="space-y-10">
+    <section className="space-y-10" aria-labelledby="news-section">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {feature.map((item) => (
           <NewsCard key={item.id} news={item} />

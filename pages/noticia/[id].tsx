@@ -16,7 +16,14 @@ export default function NewsPage({ news }: NewsPageProps) {
   const isFavorited = favorites.includes(Number(news?.id));
 
   if (!news) {
-    return <h1>Notícia não encontrada</h1>;
+    return (
+      <>
+        <Head>
+          <title>Notícia não encontrada | JOTA News</title>
+        </Head>
+        <h1>Notícia não encontrada</h1>
+      </>
+    );
   }
 
   return (

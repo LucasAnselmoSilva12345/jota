@@ -31,22 +31,27 @@ export default function Admin({ news }: AdminProps) {
   return (
     <div className="w-full p-4 lg:max-w-325 lg:mx-auto lg:my-0">
       <Head>
-        <title>JOTA News</title>
+        <title>Favoritos | Jota News</title>
         <meta
           name="description"
-          content="Portal de notícias do teste técnico"
+          content="Suas notícias favoritas no Jota News"
         />
       </Head>
       <Header />
       <main>
-        <section>
-          <h1>Bem-vindo 👋</h1>
-          <p>Suas notícias favoritas</p>
-
+        <section className="space-y-3">
           {favoriteNews.length === 0 ? (
-            <p>Nenhuma notícia favoritada ainda.</p>
+            <p className="text-neutral-600 text-center text-lg font-medium">
+              Nenhuma notícia favoritada ainda. Volte à home e clique no ❤️ para
+              salvar suas favoritas.
+            </p>
           ) : (
-            <NewsList news={favoriteNews} />
+            <>
+              <h1 className="text-neutral-800 text-2xl font-bold">
+                Suas notícias favoritas
+              </h1>
+              <NewsList news={favoriteNews} />
+            </>
           )}
         </section>
       </main>

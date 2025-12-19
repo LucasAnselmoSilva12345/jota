@@ -12,7 +12,10 @@ export function NewsCard({ news }: NewsCardProps) {
   const { favorites, toggleFavorites, token } = useAuthStore();
   const isFavorited = favorites.includes(Number(news.id));
 
-  const excerpt = news.content.slice(0, 120) + '...';
+  const excerpt =
+    news.content.length > 120
+      ? `${news.content.slice(0, 120)}...`
+      : news.content;
 
   return (
     <article className="space-y-3" data-testid="news-card">
@@ -22,7 +25,7 @@ export function NewsCard({ news }: NewsCardProps) {
           alt={news.title}
           fill
           className="object-cover"
-          sizes="(max-width: 768px) 100vw, 25vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
 
         {token && (

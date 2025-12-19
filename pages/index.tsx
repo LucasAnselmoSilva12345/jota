@@ -21,9 +21,17 @@ export default function Home({ news, hasError }: HomeProps) {
         />
       </Head>
       <Header />
-      <main>
-        {hasError && <p>Erro ao carregar as notícias</p>}
+      <main role="main">
+        {hasError && (
+          <p role="alert" className="text-red-600">
+            Erro ao carregar as notícias
+          </p>
+        )}
         <h1 className="sr-only">Portal de Notícias — Desafio Técnico</h1>
+
+        <h2 id="news-section" className="sr-only">
+          Lista das principais notícias
+        </h2>
         <NewsList news={news} />
       </main>
     </div>
