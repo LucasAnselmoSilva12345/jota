@@ -12,7 +12,7 @@ const mockNews: News = {
 };
 
 describe('NewsCard', () => {
-  it('deve renderizar título e link corretamente', () => {
+  it('should render title and link', () => {
     render(<NewsCard news={mockNews} />);
 
     expect(
