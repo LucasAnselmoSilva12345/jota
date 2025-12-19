@@ -2,6 +2,7 @@ import { Header } from '@/components/Header';
 import { getNewsById } from '@/service/news.service';
 import { useAuthStore } from '@/store/auth.store';
 import { News } from '@/types/news';
+import { Heart } from 'lucide-react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -40,11 +41,17 @@ export default function NewsPage({ news }: NewsPageProps) {
 
               {token && (
                 <button
-                  className="absolute top-0 right-0 p-1"
+                  className="absolute top-2 right-2 p-2 rounded-full bg-neutral-700/60 hover:bg-neutral-700/80 transition"
                   onClick={() => toggleFavorites(Number(news.id))}
-                  aria-label="Favoritar"
+                  aria-label={
+                    isFavorited ? 'Remover dos favoritos' : 'Favoritar'
+                  }
                 >
-                  {isFavorited ? 'Remover dos favorito' : 'Favoritar'}
+                  <Heart
+                    className={`h-5 w-5 transition ${
+                      isFavorited ? 'fill-red-500 text-red-500' : 'text-white'
+                    }`}
+                  />
                 </button>
               )}
             </div>
