@@ -10,7 +10,7 @@ test('logged-in user sees favorited news on the admin page', async ({
     .first()
     .click();
   await page.goto('/admin');
-  await expect(page.getByText(/bem-vindo/i)).toBeVisible();
+  await expect(page.getByText(/Suas notícias favoritas/i)).toBeVisible();
   await expect(page.locator('[data-testid="news-card"]')).toHaveCount(1);
 });
 

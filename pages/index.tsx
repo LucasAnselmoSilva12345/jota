@@ -1,4 +1,5 @@
 import { Header } from '@/components/Header';
+import { Layout } from '@/components/Layout';
 import { NewsList } from '@/components/NewsList';
 import { getNews } from '@/service/news.service';
 import { News } from '@/types/news';
@@ -12,7 +13,7 @@ interface HomeProps {
 
 export default function Home({ news, hasError }: HomeProps) {
   return (
-    <div className="w-full p-4 lg:max-w-325 lg:mx-auto lg:my-0">
+    <Layout>
       <Head>
         <title>JOTA News</title>
         <meta
@@ -20,7 +21,6 @@ export default function Home({ news, hasError }: HomeProps) {
           content="Portal de notícias do teste técnico"
         />
       </Head>
-      <Header />
       <main role="main">
         {hasError && (
           <p role="alert" className="text-red-600">
@@ -34,7 +34,7 @@ export default function Home({ news, hasError }: HomeProps) {
         </h2>
         <NewsList news={news} />
       </main>
-    </div>
+    </Layout>
   );
 }
 
